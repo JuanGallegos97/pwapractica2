@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cambiar Color de Fondo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: aqua;
+        }
+
+        #cambiarFondo {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #elementoCambiante {
+            width: 200px;
+            height: 100px;
+            background-color: #f0f0f0;
+            text-align: center;
+            line-height: 100px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <center>
+    <h1>Cambiar Color de Fondo</h1>
+    <button id="cambiarFondo">Clic para cambiar</button>
+    <div id="elementoCambiante">Colores</div>
+    </center>
+    <script>
+        // JavaScript
+        var botonCambiarFondo = document.getElementById('cambiarFondo');
+        var elementoCambiante = document.getElementById('elementoCambiante');
+
+        botonCambiarFondo.addEventListener('click', function () {
+            // Generar un color de fondo aleatorio
+            var colorFondo = '#' + Math.floor(Math.random()*16777215).toString(16);
+            elementoCambiante.style.backgroundColor = colorFondo;
+        });
+    </script>
+</body>
+</html>

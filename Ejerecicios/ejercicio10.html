@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Juego de Preguntas y Respuestas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: aqua;
+        }
+
+        .pregunta {
+            font-size: 24px;
+            margin: 20px;
+        }
+
+        .opcion {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .opcion:hover {
+            background-color: #0056b3;
+        }
+
+        #puntuacion {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Juego de Preguntas y Respuestas</h1>
+    <div class="pregunta" id="pregunta1">¿Cuál es la capital de Francia?</div>
+    <div class="opcion" id="opcion1a" onclick="evaluarRespuesta('opcion1a')">París</div>
+    <div class="opcion" id="opcion1b" onclick="evaluarRespuesta('opcion1b')">Londres</div>
+    <div class="opcion" id="opcion1c" onclick="evaluarRespuesta('opcion1c')">Madrid</div>
+
+    <div class="pregunta" id="pregunta2">¿Cuál es el planeta más grande del sistema solar?</div>
+    <div class="opcion" id="opcion2a" onclick="evaluarRespuesta('opcion2a')">Júpiter</div>
+    <div class="opcion" id="opcion2b" onclick="evaluarRespuesta('opcion2b')">Venus</div>
+    <div class="opcion" id="opcion2c" onclick="evaluarRespuesta('opcion2c')">Marte</div>
+
+    <div class="pregunta" id="pregunta3">¿Quién escribió la obra "Romeo y Julieta"?</div>
+    <div class="opcion" id="opcion3a" onclick="evaluarRespuesta('opcion3a')">William Shakespeare</div>
+    <div class="opcion" id="opcion3b" onclick="evaluarRespuesta('opcion3b')">Charles Dickens</div>
+    <div class="opcion" id="opcion3c" onclick="evaluarRespuesta('opcion3c')">Jane Austen</div>
+
+    <div id="puntuacion">Puntuación: 0</div>
+
+    <script>
+        // JavaScript
+        var puntuacion = 0;
+
+        function evaluarRespuesta(idOpcion) {
+            var opcionSeleccionada = document.getElementById(idOpcion);
+            var pregunta = opcionSeleccionada.parentElement.getElementsByClassName('pregunta')[0];
+
+            if (idOpcion.includes(pregunta.id)) {
+                opcionSeleccionada.style.backgroundColor = '#4caf50'; // Respuesta correcta
+                puntuacion++;
+            } else {
+                opcionSeleccionada.style.backgroundColor = '#f44336'; // Respuesta incorrecta
+            }
+
+            opcionSeleccionada.style.cursor = 'default';
+            opcionSeleccionada.removeEventListener('click', function () { });
+
+            mostrarPuntuacion();
+        }
+
+        function mostrarPuntuacion() {
+            document.getElementById('puntuacion').textContent = 'Puntuación: ' + puntuacion;
+        }
+    </script>
+</body>
+</html>

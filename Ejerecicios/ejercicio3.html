@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Imagen Cambiante</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: aqua;
+        }
+
+        #imagenContenedor {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        #imagenPrincipal {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s;
+        }
+
+        #imagenSecundaria {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+
+        #imagenContenedor:hover #imagenPrincipal {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Imagen Cambiante</h1>
+    <div id="imagenContenedor">
+        <img id="imagenPrincipal" src="img1.jpg" alt="Imagen Principal">
+        <img id="imagenSecundaria" src="img2.jpg" alt="Imagen Secundaria">
+       
+    </div>
+
+    <script>
+        // JavaScript
+        var imagenContenedor = document.getElementById('imagenContenedor');
+        var imagenPrincipal = document.getElementById('imagenPrincipal');
+        var imagenSecundaria = document.getElementById('imagenSecundaria');
+
+        imagenContenedor.addEventListener('mouseenter', function () {
+            imagenPrincipal.style.display = 'none';
+            imagenSecundaria.style.display = 'block';
+        });
+
+        imagenContenedor.addEventListener('mouseleave', function () {
+            imagenPrincipal.style.display = 'block';
+            imagenSecundaria.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

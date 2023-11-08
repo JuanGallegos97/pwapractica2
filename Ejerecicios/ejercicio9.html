@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Temporizador de Cuenta Regresiva</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: aqua;
+        }
+
+        #temporizador {
+            font-size: 24px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Temporizador de Cuenta Regresiva</h1>
+    <div id="temporizador">00:00:00</div>
+
+    <script>
+        // JavaScript
+        function actualizarTemporizador() {
+            var fechaObjetivo = new Date('2023-12-31 23:59:59'); // Establece la fecha objetivo (Año-Mes-Día Hora:Minuto:Segundo)
+            var ahora = new Date();
+            var diferencia = fechaObjetivo - ahora;
+
+            if (diferencia <= 0) {
+                document.getElementById('temporizador').textContent = '00:00:00';
+                clearInterval(temporizadorInterval);
+            } else {
+                var segundos = Math.floor((diferencia / 1000) % 60);
+                var minutos = Math.floor((diferencia / (1000 * 60)) % 60);
+                var horas = Math.floor((diferencia / (1000 * 60 * 60)) % 24);
+                var dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+
+                segundos = segundos < 10 ? '0' + segundos : segundos;
+                minutos = minutos < 10 ? '0' + minutos : minutos;
+                horas = horas < 10 ? '0' + horas : horas;
+
+                document.getElementById('temporizador').textContent = dias + 'd ' + horas + 'h ' + minutos + 'm ' + segundos + 's';
+            }
+        }
+
+        var temporizadorInterval = setInterval(actualizarTemporizador, 1000);
+        actualizarTemporizador(); // Actualizar de inmediato para evitar retrasos
+    </script>
+</body>
+</html>

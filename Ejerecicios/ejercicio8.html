@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Carrusel de Imágenes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: aqua;
+        }
+
+        #carrusel {
+            width: 400px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        #imagenes {
+            display: flex;
+            transition: transform 0.5s;
+        }
+
+        .imagen {
+            width: 400px;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        #botonAnterior,
+        #botonSiguiente {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Carrusel de Imágenes</h1>
+    <div id="carrusel">
+        <div id="imagenes">
+            <img class="imagen" src="img3.jpg" alt="Imagen 1">
+            <img class="imagen" src="img4.jpg" alt="Imagen 2">
+            <img class="imagen" src="img5.png" alt="Imagen 3">
+        </div>
+    </div>
+    <button id="botonAnterior">Anterior</button>
+    <button id="botonSiguiente">Siguiente</button>
+
+    <script>
+        // JavaScript
+        var carrusel = document.getElementById('carrusel');
+        var imagenes = document.getElementById('imagenes');
+        var botonAnterior = document.getElementById('botonAnterior');
+        var botonSiguiente = document.getElementById('botonSiguiente');
+
+        var indiceImagenActual = 0;
+        var imagenesArray = document.querySelectorAll('.imagen');
+        var intervaloCambioImagen;
+
+        function avanzarImagen() {
+            indiceImagenActual = (indiceImagenActual + 1) % imagenesArray.length;
+            actualizarCarrusel();
+        }
+
+        function retrocederImagen() {
+            indiceImagenActual = (indiceImagenActual - 1 + imagenesArray.length) % imagenesArray.length;
+            actualizarCarrusel();
+        }
+
+        function actualizarCarrusel() {
+            var desplazamiento = -indiceImagenActual * 400; // 400 es el ancho de cada imagen
+            imagenes.style.transform = 'translateX(' + desplazamiento + 'px)';
+        }
+
+        botonSiguiente.addEventListener('click', avanzarImagen);
+        botonAnterior.addEventListener('click', retrocederImagen);
+
+        function iniciarCarrusel() {
+            intervaloCambioImagen = setInterval(avanzarImagen, 3000); // Cambia de imagen cada 3 segundos
+        }
+
+        iniciarCarrusel();
+    </script>
+</body>
+</html>

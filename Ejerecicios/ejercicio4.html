@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reloj Analógico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: aqua;
+        }
+
+        #reloj {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            margin: 100px auto;
+            background-image: url('reloj-fondo.png');
+            background-size: cover;
+        }
+
+        .manecilla {
+            position: absolute;
+            width: 50%;
+            height: 2px;
+            background-color: #333;
+            transform-origin: 100%;
+            top: 50%;
+            transform: translateY(-1px);
+            left: 50%;
+        }
+
+        #hora {
+            height: 6px;
+            background-color: #f00;
+        }
+
+        #minuto {
+            height: 4px;
+            background-color: #00f;
+        }
+
+        #segundo {
+            height: 2px;
+            background-color: #0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Reloj Analógico</h1>
+    <div id="reloj">
+        <div id="hora" class="manecilla"></div>
+        <div id="minuto" class="manecilla"></div>
+        <div id="segundo" class="manecilla"></div>
+    </div>
+
+    <script>
+        // JavaScript
+        function actualizarReloj() {
+            var hora = new Date();
+            var horaActual = hora.getHours();
+            var minutoActual = hora.getMinutes();
+            var segundoActual = hora.getSeconds();
+
+            var gradosHora = (horaActual + minutoActual / 60) * 360 / 12;
+            var gradosMinuto = (minutoActual + segundoActual / 60) * 360 / 60;
+            var gradosSegundo = (segundoActual * 360 / 60);
+
+            document.getElementById('hora').style.transform = `rotate(${gradosHora}deg)`;
+            document.getElementById('minuto').style.transform = `rotate(${gradosMinuto}deg)`;
+            document.getElementById('segundo').style.transform = `rotate(${gradosSegundo}deg)`;
+        }
+
+        actualizarReloj();
+        setInterval(actualizarReloj, 1000); // Actualizar cada segundo
+    </script>
+</body>
+</html>

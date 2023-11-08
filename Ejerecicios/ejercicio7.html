@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menú de Navegación</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: aqua;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        .submenu {
+            display: none;
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .menu-item:hover .submenu {
+            display: block;
+        }
+
+        .menu-item:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <center>
+    <h1>Menú de Navegación</h1>
+    <ul>
+        <li class="menu-item">Inicio
+            <ul class="submenu">
+                <li>Submenú 1</li>
+                <li>Submenú 2</li>
+            </ul>
+        </li>
+        <li class="menu-item">Servicios
+            <ul class="submenu">
+                <li>Submenú 3</li>
+                <li>Submenú 4</li>
+            </ul>
+        </li>
+        <li class="menu-item">Acerca de</li>
+        <li class="menu-item">Contacto</li>
+    </ul>
+
+    <script>
+        // JavaScript
+        var menuItems = document.querySelectorAll('.menu-item');
+
+        for (var i = 0; i < menuItems.length; i++) {
+            menuItems[i].addEventListener('click', function () {
+                var submenu = this.querySelector('.submenu');
+                if (submenu) {
+                    if (submenu.style.display === 'block') {
+                        submenu.style.display = 'none';
+                    } else {
+                        submenu.style.display = 'block';
+                    }
+                }
+            });
+        }
+    </script>
+    </center>
+</body>
+</html>

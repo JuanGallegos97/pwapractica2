@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Tareas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: aqua;
+        }
+
+        #tareaInput {
+            width: 60%;
+            padding: 5px;
+        }
+
+        #agregarBtn {
+            padding: 5px 10px;
+        }
+
+        #listaTareas {
+            width: 60%;
+            margin: 20px auto;
+            text-align: left;
+        }
+
+        .tarea {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Tareas</h1>
+    <div>
+        <input type="text" id="tareaInput" placeholder="Escribe una tarea">
+        <button id="agregarBtn">Agregar</button>
+    </div>
+    <ul id="listaTareas">
+        <!-- Las tareas se agregarán aquí -->
+    </ul>
+
+    <script>
+        // JavaScript
+        var tareaInput = document.getElementById('tareaInput');
+        var agregarBtn = document.getElementById('agregarBtn');
+        var listaTareas = document.getElementById('listaTareas');
+
+        agregarBtn.addEventListener('click', function () {
+            var tarea = tareaInput.value.trim();
+
+            if (tarea !== '') {
+                var nuevaTarea = document.createElement('li');
+                nuevaTarea.className = 'tarea';
+                nuevaTarea.innerHTML = `
+                    <span>${tarea}</span>
+                    <button>Eliminar</button>
+                `;
+                listaTareas.appendChild(nuevaTarea);
+
+                tareaInput.value = '';
+
+                // Agregar evento de click para eliminar la tarea
+                nuevaTarea.querySelector('button').addEventListener('click', function () {
+                    listaTareas.removeChild(nuevaTarea);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
